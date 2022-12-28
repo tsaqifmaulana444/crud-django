@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+        {% include 'judul.html' %}
+        <h2>login</h2>
+    </center>
+
+    {% if user.is_authenticated %}
+        <meta http-equiv="refresh" content="0; url={% url 'buku' %}">
+    {% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        sign up
+                    </div>
+                    <div class="card-body">
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success">{{ message }}</div>
+                            {% else %}
+                                <div class="alert alert-danger">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+                        <form action="{% url 'signup' %}" method="post">
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+
+                            <button class="btn btn-primary">daftar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+{% endblock  %}

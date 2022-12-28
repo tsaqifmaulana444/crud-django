@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+        {% include 'judul.html' %}
+        <h2>daftar buku</h2>
+        <br>
+    </center>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{% url 'tambah_buku' %}">
+                    <button class="btn btn-info">Tambah Buku</button>
+                </a>
+                <table class="table">
+                    <thead>
+                        <th>COVER</th>
+                        <th>JUDUL</th>
+                        <th>PENULIS</th>
+                        <th>PENERBIT</th>
+                        <th>JUMLAH</th>
+                        <th>KELOMPOK</th>
+                        <th>ACTION</th>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td>
+                                    {% if book.cover %}
+                                        <img src="{{ book.cover.url }}" alt="{{ book.cover.url }}" srcset="" width="90px">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'ubah_buku' book.id %}">{{ book.judul }}</a>
+                                </td>
+                                <td>{{ book.penulis }}</td>
+                                <td>{{ book.penerbit }}</td>
+                                <td>{{ book.jumlah }}</td>
+                                <td>{{ book.kelompok_id }}</td>
+                                <td>
+                                    <a href="{% url 'hapus_buku' book.id %}" type="button" class="btn btn-danger" onclick="return confirm('yakin dek? {{ book.judul }} loh?')">
+                                        Hapus
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock  %}

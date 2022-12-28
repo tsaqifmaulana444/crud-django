@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+        {% include 'judul.html' %}
+        <h2>tambah buku</h2>
+    </center>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% if pesan %}
+                    <div class="alert alert-success">{{ pesan }}</div>
+                {% endif %}
+                <form action="/tambah_buku/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+            
+                    <button class="btn btn-primary">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}

@@ -1,0 +1,7 @@
+<h1>
+    perpustakaan bisa
+    {% if user.is_authenticated %}
+        <p>{{ user }}</p>
+    {% endif %}
+    <p><a href="{% url 'keluar' %}">logout</a></p>
+</h1>
