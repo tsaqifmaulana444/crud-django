@@ -4,8 +4,7 @@ in Django, you can deploy machine learning model in website environment, process
 
 # Usage
 In case you wanna try my CRUD app :
-- Username : hp
-- password : qwertyui
+- py manage.py createsuperuser
 - Turn on the commented django secret key in perpus/settings.py
 
 
